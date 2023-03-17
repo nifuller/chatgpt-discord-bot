@@ -8,6 +8,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
+chatbot = Chatbot()
 
 @client.event
 async def on_ready():
@@ -18,7 +19,11 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+    if message.content.startswith('!bozo'):
+        cmd = message.content.split()[0].replace("!bozo","")
+        if len(message.content.split()) > 1:
+            user_message = message.content[1:]
+            await message.channel.send(chatbot.get_response(user_message))
+            user_message = ""
 
 client.run(DISCORD_KEY)
