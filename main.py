@@ -20,7 +20,7 @@ async def on_message(message):
         return
 
     if message.content.startswith('!bozo'):
-        cmd = message.content.split()[0].replace("!bozo","")
+        message.content.split()[0].replace("!bozo","")
         if len(message.content.split()) > 1:
             user_message = message.content[1:]
             await message.channel.send(chatbot.get_response(user_message))
