@@ -1,7 +1,7 @@
 import openai
 from config import CHATGPT_KEY
 
-class GptBot:
+class Bozobot:
     def __init__(self):
         openai.api_key = CHATGPT_KEY
 
@@ -24,5 +24,6 @@ class GptBot:
             image_url = response['data'][0]['url']
             return image_url
         except openai.InvalidRequestError:
-            message = "Error! Try asking Bozo again."
+            message = "Something went wrong!"
             return message
+ 
