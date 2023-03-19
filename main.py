@@ -17,6 +17,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    num_calls = 0
+    
     if message.author == client.user:
         return
 
