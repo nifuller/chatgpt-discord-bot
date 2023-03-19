@@ -25,14 +25,17 @@ async def on_message(message):
     if message.content.startswith('!bozo'):
         message.content.split()[0].replace("!bozo","")
         if len(message.content.split()) > 1:
-            user_message = message.content[1:]
+            user_message = message.content[6:]
             await message.channel.send(bozo_bot.get_response(user_message))
+            await message.channel.send(f"\nPrompt: {user_message}")
             user_message = ""
 
     if message.content.startswith('!paint'):
-        message.content.split()[0].replace("!paint","")
+        user_message = message.content.split()[0].replace("!paint"," ")
         if len(message.content.split()) > 1:
-            user_message = message.content[1:]
+            user_message = message.content[7:]
             await message.channel.send(bozo_bot.get_prompt(user_message))
+            await message.channel.send(f"\nPrompt: {user_message}")
+            user_message = ""
 
 client.run(DISCORD_KEY)

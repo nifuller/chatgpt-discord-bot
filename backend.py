@@ -11,7 +11,7 @@ class Bozobot:
                 engine="text-davinci-003",
                 prompt=user_input,
                 max_tokens=4000,
-                temperature=0.5
+                temperature=0.7
             ).choices[0].text
             return response
         except openai.InvalidRequestError as e:
