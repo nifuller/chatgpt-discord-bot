@@ -1,6 +1,33 @@
 import openai
+import time
+from datetime import datetime, timedelta
 from config import CHATGPT_KEY
 
+class GetTime():
+    def __init__(self):
+        self.today = datetime.now()
+        self.tomorrow = self.today + timedelta(1)
+        self.yesterday = self.today - timedelta(1)
+
+    def time_check(self):
+        self.today = self.today.strftime('%d-%m')
+        self.tomorrow = self.tomorrow.strftime('%d-%m')
+        
+        if self.today == self.tomorrow:
+            return True
+        else:
+            return False
+
+class RestrictCommand:
+    def __init__(self):
+        self.calls = 0;
+
+    def update_calls(self):
+        self.calls += 1
+
+    def retrieve_calls(self):
+        return self.calls
+        
 class Bozobot:
     def __init__(self):
         openai.api_key = CHATGPT_KEY
