@@ -4,6 +4,7 @@
 # you can use bozo bot again
 
 import discord
+import time
 from backend import Bozobot, RestrictCommand
 from config import DISCORD_KEY
 
@@ -25,7 +26,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if num_calls.retrieve_calls() < 1:
+    if num_calls.retrieve_calls() < 25:
         if message.content.startswith('!bozo'):
             message.content.split()[0].replace("!bozo","")
             if len(message.content.split()) > 1:
@@ -44,6 +45,10 @@ async def on_message(message):
                 user_message = ""
                 num_calls.update_calls()
     else:
-        print("SUCKS TO SUCK")
+        cool_down_message = """Hey clown, you're doing
+        that too many times.
+        Let it cool down.
+        """
+        await message.channel.send(cool_down_message)
 
 client.run(DISCORD_KEY)
